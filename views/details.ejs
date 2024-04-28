@@ -14,17 +14,16 @@
 
   <%- include("./partials/footer.ejs") %>
 
-  <script> 
-  // to delete we should end this fetch api to the server
+  <script>
     const trashcan = document.querySelector('a.delete');
 
     trashcan.addEventListener('click', (e) => {
       const endpoint = `/blogs/${trashcan.dataset.doc}`;
-      // ajax request bcz we do it by js not a web form
+
       fetch(endpoint, {
-        method: 'DELETE', // this so we can handle delete requests
+        method: 'DELETE',
       })
-      .then(response  => response.json()) // the json whit the redirect propery is back inside here but we can't readily use so we need to take that json sata like this by returning another promise wereby it passes this data json int a js object that we can use
+      .then(response => response.json())
       .then(data => window.location.href = data.redirect)
       .catch(err => console.log(err));
     });

@@ -1,0 +1,30 @@
+<html lang="en">
+<!-- the main objective of ejs is to embed js on html and pass data into it dynamically -->
+<!-- server-side rendering is database + ejs + view engine = resulting view dynamic html -->
+<!-- when ever use include we use <%- %> -->
+<%- include("./partials/head.ejs") %> 
+<!-- include() is a function to include html files(partials) -->
+<!-- when doing code use "<% %>" -->
+ <% const name = "mohamed"%>  
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="blogs content">
+    <h2>All Blogs</h2>
+
+    <% if (blogs.length > 0) { %>
+      <% blogs.forEach(blog => { %>
+          <!-- wehn putting a value <%= %> -->
+        <h3 class="title"><%= blog.title %></h3>
+        <p class="snippet"><%= blog.snippet %></p>
+
+      <% }) %>
+    <% } else { %>
+      <p>There are no blogs to display...</p>
+    <% } %>
+    
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>
